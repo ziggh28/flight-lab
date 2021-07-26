@@ -1,0 +1,27 @@
+
+<%- include('../partials/nav.ejs') %>
+  <body>
+
+<form action="/destinations" method="POST">
+    <label for="desination-input">Destination Airport:</label>
+    <input type="text" name="airport" id="destination-input">
+    <button type="submit">Add Destination</button>
+</form>
+
+<% if (destinations.length) { %>
+    <table>
+        <thead>
+            <th>Destinations Added</th>
+        </thead>
+        <br>
+        <tbody>
+            <% destinations.forEach(function(destination) { %>
+            <tr>
+                <td><%= destination.airport %> </td>
+            </tr>
+            <% }) %> 
+        </tbody>
+    </table>
+    <% }else{ %>
+        <h3>No Destinations Yet</h3>
+    <% } %> 

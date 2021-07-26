@@ -1,0 +1,41 @@
+<%- include('../partials/html-head.ejs') %> 
+<link rel="stylesheet" href="/public/stylesheets/style.css" />
+<%- include('../partials/nav.ejs') %>
+<%- include('../partials/footer.ejs') %>
+
+
+ <!-- <h3>Destination:</h3>
+    <ul class='add'>
+      <%- flight.destination.map(p=>
+        `<li>${p.airport}</li>`)%>
+    </ul>
+    </section>
+    <form class='add' action='/flight/<%= flights._id %>/destination' method='POST'>
+      <select name='destinationId'>
+        <%- destination.map(p=>
+          `<option value='${p._id}''>${p.airport}</option>`
+        ).join('') %>
+      </select>
+      <button class="add" type=' submit'>Add Destination</button>
+    </form>
+    <form action='/flight/<%= flights._id %>/tickets' method='POST'>
+      <label for='seat'>Seat:</label>
+      <input type='text' name='seat' required pattern='[A-F][1-9]\d?''>
+        <label for=' price'>Price:</label>
+      <input type='number' min='0' name='price'>
+      <button class='add' type='submit'>Add Ticket</button>
+    </form>
+    <section>
+      <h2>Available Tickets:</h2>
+      <br>
+      <% if (flight.tickets.length) { %>
+        <% flight.tickets.forEach(ticket=> { %>
+          <div>Seat Number: <%= ticket.seat %>
+          </div>
+          <div>Price: <%= ticket.price %>
+          </div>
+          <% }) %>
+            <% } else { %>
+              <h4>No Tickets <%= flights.flightNo %>
+              </h4>
+              <% } %> -->

@@ -1,0 +1,72 @@
+
+<h1> <%= title %> </h1>
+<%- include('../partials/nav') %>
+
+<body>
+    <table>
+        <th>Airline</th>
+        <th>Airport</th>
+        <th>Flight Number</th>
+        <th>Departure</th>
+        <tr>
+          <td><%= flight.airline %></td>
+          <td><%= flight.airport %></td>
+          <td><%= flight.flightNo %></td>
+          <td><%= flight.departs %></td>
+        </tr>
+      </table>
+
+    <form 
+        id="add-ticket-form"
+        action="/flights/<%= flight._id %>/tickets"
+        method="POST">
+      <div>Seat:</div>
+        <input name='seat' type="text">
+      <div>Price:</div>
+        <input name='price' type="text">
+
+      <button type="submit">get Ticket</button>
+    </form>
+<br>
+    <% if (flight.tickets.length) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Seat Number:</th>
+              <th>Price:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% let total = 0 %> 
+            <% flight.tickets.forEach(function(ticket) { %>
+              <% total += ticket.price %>
+              <tr>
+                <td><%= ticket.seat %></td>
+                <td>$<%= ticket.price %></td>
+              </tr>
+            <% }) %>
+            <tr>
+              <td colspan="2"></td>
+            </tr>
+          </tbody>
+        </table>
+      <% } else { %>
+        <h3>No Tickets available</h3>
+      <% } %>
+<br>
+
+<div>Destinations:</div>
+<ul>
+  <%- flight.destinations.map(destination => 
+          `<li>${destination.airport}</li>`
+          ).join('') %>
+      </ul>
+      
+      <form id="add-per-to-destination" action="/flights/<%= flight._id %>/destinations" method="POST">
+        <select name="destinationId">
+          <%- destinations.map(destination => 
+            `<option value="${destination._id}">${destination.airport}</option>`
+          ).join('') %>
+        </select>
+        <button type="submit">Add</button>
+      </form> %>
